@@ -15,9 +15,9 @@ import java.time.LocalDate;
         name = "attendance",
         uniqueConstraints = @UniqueConstraint(columnNames = {"className", "rollno"})
 )
-public class AttendanceModel {
+public class Attendance {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -26,4 +26,8 @@ public class AttendanceModel {
     private String className;
     private String rollno;
     private boolean attendance;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 }

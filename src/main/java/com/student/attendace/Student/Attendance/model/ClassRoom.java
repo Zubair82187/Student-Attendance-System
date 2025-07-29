@@ -1,26 +1,30 @@
 package com.student.attendace.Student.Attendance.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class LearningClass {
+@Table(name = "classroom")
+public class ClassRoom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private  String name;
     private String section;
 
-    @OneToMany
-    @JoinColumn(
-            
-    )
-    private StudentModel studentModel;
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Student> students;
+
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<StudentClassesHistory> studentClassesHistories;
 }

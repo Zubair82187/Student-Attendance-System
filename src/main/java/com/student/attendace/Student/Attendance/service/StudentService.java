@@ -1,68 +1,74 @@
 package com.student.attendace.Student.Attendance.service;
 
+import com.student.attendace.Student.Attendance.dto.StudentDTO;
 import com.student.attendace.Student.Attendance.exception.NotFoundException;
-import com.student.attendace.Student.Attendance.model.StudentModel;
+import com.student.attendace.Student.Attendance.model.Student;
 import com.student.attendace.Student.Attendance.repository.StudentRepository;
-import org.apache.logging.log4j.util.InternalException;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class StudentService {
 
+    private final ModelMapper modelMapper;
     private final StudentRepository repository;
 
-    public StudentService(StudentRepository repository){
-        this.repository = repository;
+
+    // Create Student using studentDTO
+    public StudentDTO create(StudentDTO studentDTO){
+        Student student = modelMapper.map(studentDTO, Student.class);
+        student = repository.save(student);
+        return modelMapper.map(student, StudentDTO.class);
     }
 
 
-    public StudentModel create(StudentModel model){
-        if(model != null && !isEmpty(model)){
-            return repository.save(model);
+    //Get student by student id
+    public StudentDTO getById(int id){
+        Student student = repository.findById(id)
+                .orElseThrow(()-> new NotFoundException("There is no student with id "+id));
+
+        return modelMapper.map(student, StudentDTO.class);
+    }
+
+    //delete student by student id
+    public String delete(int id){
+        System.out.println("ye id ayi hai " + id);
+        if(repository.deleteStudentById(id)==0){
+            throw new NotFoundException("There is no student with id "+id);
         }
         else{
-            throw new InternalException("something went wrong");
+            return "Deleted Successfully";
         }
     }
 
+    //Update student
+//    public StudentDTO update(StudentDTO studentDTO){
+//        int studentModel = repository.updateStudent(modelMapper.map(studentDTO, Student.class), studentDTO.getId());
+//        if(studentModel==0){
+//            throw new NotFoundException("There is no such student.");
+//        }
+//        else{
+//            return modelMapper.map(studentDTO, StudentDTO.class);
+//        }
+//    }
 
-    public StudentModel getById(int id){
-        return repository.getReferenceById(id);
-    }
+    //Get all the students
+    public List<StudentDTO> getAllStudent(){
+        List<Student> students = repository.findAll();
 
-    public void delete(int id){
-        repository.deleteById(id);
-    }
-
-    public StudentModel update(StudentModel model){
-        StudentModel student = new StudentModel();
-
-        if(!isEmpty(model)){
-            student = repository.getReferenceById(model.getId());
-        }
-        student.setName(model.getName());
-        student.setStudentClass(model.getStudentClass());
-        student.setAge(model.getAge());
-        student.setRollno(model.getRollno());
-
-        return repository.save(student);
-    }
-
-    public List<StudentModel> getAllStudent(){
-        List<StudentModel> list = repository.findAll();
-
-        if(!list.isEmpty()){
-            return list;
+        if(!students.isEmpty()){
+            return students.stream()
+                    .map(student -> modelMapper.map(student, StudentDTO.class))
+                    .collect(Collectors.toList());
         }
         else{
             throw new NotFoundException("No student found");
         }
-    }
-
-    private boolean isEmpty(StudentModel model){
-        return model.getAge() > 1 && model.getName() != null && model.getStudentClass() != null && model.getRollno() != null && model.getDob()!=null;
     }
 
 

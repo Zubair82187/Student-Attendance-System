@@ -1,7 +1,8 @@
 package com.student.attendace.Student.Attendance.controller;
 
-import com.student.attendace.Student.Attendance.model.AttendanceModel;
+import com.student.attendace.Student.Attendance.dto.AttendanceDTO;
 import com.student.attendace.Student.Attendance.service.AttendanceService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +17,18 @@ public class AttendanceController {
         this.service = service;
     }
 
-    @PostMapping("/markAttendance")
-    public ResponseEntity<AttendanceModel> markAttendance(@RequestBody AttendanceModel attendanceModel){
-        return ResponseEntity.ok().body(service.markAttendance(attendanceModel));
+    @PostMapping
+    public ResponseEntity<AttendanceDTO> markAttendance(@RequestBody @Valid AttendanceDTO attendanceDTO){
+        return ResponseEntity.ok().body(service.markAttendance(attendanceDTO));
     }
 
-    @GetMapping("/getAttendance/{className}/{rollno}")
-    public ResponseEntity<List<AttendanceModel>> getAttendanceByClassNameAndRollno(@PathVariable String className, @PathVariable String rollno){
+    @GetMapping("/{className}/{rollno}")
+    public ResponseEntity<List<AttendanceDTO>> getAttendanceByClassNameAndRollno(@PathVariable String className, @PathVariable String rollno){
         return ResponseEntity.ok().body(service.getAttendance(className, rollno));
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<AttendanceModel>> getAttendances(){
+    @GetMapping
+    public ResponseEntity<List<AttendanceDTO>> getAttendances(){
         return ResponseEntity.ok().body(service.getAttendances());
     }
 }

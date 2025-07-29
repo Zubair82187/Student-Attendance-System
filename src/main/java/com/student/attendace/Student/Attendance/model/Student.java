@@ -1,29 +1,40 @@
 package com.student.attendace.Student.Attendance.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Data
 @Entity(name = "student")
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentModel {
+public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
     private int age;
-    private String studentClass;
     private String rollno;
     private Date dob;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
+    private List<StudentClassesHistory> studentClassesHistories;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "class_id")
+    private ClassRoom classRoom;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<Attendance> attendance;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<CourseEnrollment> courseEnrollment;
 }
