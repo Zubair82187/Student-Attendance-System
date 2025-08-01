@@ -1,6 +1,5 @@
 package com.student.attendace.Student.Attendance.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +18,12 @@ public class ClassRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private  String name;
+    @Column(nullable = false)
+    private  String className;
     private String section;
+
+    @Column(nullable = false)
+    private String session;
 
     @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Student> students;

@@ -35,6 +35,7 @@ public class GlobalexceptioinHandler {
     }
 
 
+
     private ResponseEntity<Object> errorResponse(Exception ex, HttpStatus status){
         ResponseError error = new ResponseError(LocalDateTime.now(), ex.getMessage(), status.value());
         return new ResponseEntity<>(error, status);

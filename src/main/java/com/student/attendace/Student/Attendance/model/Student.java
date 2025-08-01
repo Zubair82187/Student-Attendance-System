@@ -25,7 +25,7 @@ public class Student {
     private Date dob;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     private List<StudentClassesHistory> studentClassesHistories;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -20,9 +20,6 @@ public class StudentDTO {
     @NotNull(message = "age is required")
     private int age;
 
-    @NotNull(message = "studentClass is required")
-    private String studentClass;
-
     @NotNull(message = "rollno is required")
     private String rollno;
 
