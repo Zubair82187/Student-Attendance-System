@@ -1,5 +1,6 @@
-package com.student.attendace.Student.Attendance.dto;
+package com.student.attendace.Student.Attendance.dto.classroom;
 
+import com.student.attendace.Student.Attendance.model.StudentClassesHistory;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +9,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ClassRoomDTOWithStudent {
+@AllArgsConstructor
+public class ClassRoomDTOWithStudentClassHistory {
     private int id;
 
     @NotNull(message = "class name is required")
@@ -21,5 +22,5 @@ public class ClassRoomDTOWithStudent {
 
     private String section;
 
-    private List<StudentDTO> students;
+    private List<StudentClassesHistory> studentClassesHistories;
 }

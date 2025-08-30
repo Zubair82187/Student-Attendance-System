@@ -5,20 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "course_enrollment")
-public class CourseEnrollment {
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Table(name = "teacher")
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
-    @ManyToOne
-    private Student student;
+    private String name;
 
-    @ManyToOne
-    private Subject subject;
+    private String email;
+
 }

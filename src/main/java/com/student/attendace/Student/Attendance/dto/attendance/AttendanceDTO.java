@@ -1,6 +1,8 @@
-package com.student.attendace.Student.Attendance.dto;
+package com.student.attendace.Student.Attendance.dto.attendance;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.student.attendace.Student.Attendance.dto.classroom.ClassRoomDTO;
+import com.student.attendace.Student.Attendance.dto.student.StudentDTO;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,15 +14,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class AttendanceDTO {
+    @NotNull(message = "date is required")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
 
-    @NotNull(message = "class name is required")
-    private String className;
+    @NotNull(message = "class id is required")
+    private ClassRoomDTO classRoom;
 
     @NotNull(message = "roll no is required")
     private String rollno;
 
     @NotNull(message = "attendance is required")
     private boolean attendance;
+
+    @NotNull(message = "student id is required")
+    private StudentDTO student;
 }

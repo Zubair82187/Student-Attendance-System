@@ -1,9 +1,9 @@
 package com.student.attendace.Student.Attendance.service;
 
-import com.student.attendace.Student.Attendance.dto.ClassRoomDTO;
-import com.student.attendace.Student.Attendance.dto.ClassRoomDTOFullEntity;
-import com.student.attendace.Student.Attendance.dto.ClassRoomDTOWithStudent;
-import com.student.attendace.Student.Attendance.dto.ClassRoomDTOWithStudentClassHistory;
+import com.student.attendace.Student.Attendance.dto.classroom.ClassRoomDTO;
+import com.student.attendace.Student.Attendance.dto.classroom.ClassRoomDTOFullEntity;
+import com.student.attendace.Student.Attendance.dto.classroom.ClassRoomDTOWithStudent;
+import com.student.attendace.Student.Attendance.dto.classroom.ClassRoomDTOWithStudentClassHistory;
 import com.student.attendace.Student.Attendance.exception.NotFoundException;
 import com.student.attendace.Student.Attendance.mapper.ClassRoomMapper;
 import com.student.attendace.Student.Attendance.model.ClassRoom;

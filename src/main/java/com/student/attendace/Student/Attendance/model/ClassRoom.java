@@ -30,4 +30,7 @@ public class ClassRoom {
 
     @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StudentClassesHistory> studentClassesHistories;
+
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Attendance> attendance;
 }

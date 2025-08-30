@@ -34,6 +34,10 @@ public class GlobalexceptioinHandler {
                 HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(NullvalueException.class)
+    public ResponseEntity<Object> nullValueException(NullvalueException exception){
+        return errorResponse(exception, HttpStatus.NO_CONTENT);
+    }
 
 
     private ResponseEntity<Object> errorResponse(Exception ex, HttpStatus status){

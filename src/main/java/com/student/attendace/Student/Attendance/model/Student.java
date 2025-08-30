@@ -36,5 +36,5 @@ public class Student {
     private List<Attendance> attendance;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
-    private List<CourseEnrollment> courseEnrollment;
+    private List<Subject> subject;
 }

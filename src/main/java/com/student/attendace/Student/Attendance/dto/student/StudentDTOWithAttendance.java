@@ -1,27 +1,22 @@
-package com.student.attendace.Student.Attendance.dto;
+package com.student.attendace.Student.Attendance.dto.student;
 
-import jakarta.validation.constraints.NotNull;
+import com.student.attendace.Student.Attendance.dto.attendance.AttendanceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.util.Date;
+import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class StudentDTO {
+public class StudentDTOWithAttendance {
     private int id;
 
-    @NotNull(message = "name is required")
     private String name;
-
-    @NotNull(message = "age is required")
     private int age;
-
-    @NotNull(message = "rollno is required")
     private String rollno;
-
     private Date dob;
+    List<AttendanceDTO> attendance;
 }

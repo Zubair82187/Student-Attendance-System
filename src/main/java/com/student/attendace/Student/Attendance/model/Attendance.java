@@ -11,9 +11,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(
-        name = "attendance",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"className", "rollno"})
+@Table(name = "attendance",
+uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"student_id", "date"})
+    }
 )
 public class Attendance {
     @Id
@@ -23,7 +24,10 @@ public class Attendance {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
 
-    private String className;
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private ClassRoom classRoom;
+
     private String rollno;
     private boolean attendance;
 

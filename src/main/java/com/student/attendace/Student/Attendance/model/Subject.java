@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
 
 @Entity
@@ -18,9 +17,15 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int subject_id;
 
+    @Column(nullable = false)
     private String name;
-    private String taught_by;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
-    private List<CourseEnrollment> courseEnrollments;
+    @OneToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
 }
