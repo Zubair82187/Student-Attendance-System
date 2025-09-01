@@ -31,8 +31,8 @@ public class SubjectController {
     }
 
     // ✅ Get Subject by Name
-    @GetMapping("/by-name")
-    public ResponseEntity<SubjectDTO> getSubjectByName(@RequestParam String name) {
+    @GetMapping("/by-name/{name}")
+    public ResponseEntity<SubjectDTO> getSubjectByName(@PathVariable String name) {
         return ResponseEntity.ok(subjectService.getByName(name));
     }
 

@@ -53,6 +53,7 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.dob").value("12/10/1999"));
     }
 
+
     @Test
     void create_student_should_return_studentDTO_and_200_ok() throws Exception{
 
@@ -70,6 +71,7 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.rollno").value(21))
                 .andExpect(jsonPath("$.dob").value("12/10/1999"));
     }
+
 
     @Test
     void get_list_of_student_should_return_listOfStudent_and_200_ok() throws Exception{
@@ -100,7 +102,7 @@ public class StudentControllerTest {
                 .andExpect(content().string("successfully deleted"));
     }
 
-    // ✅ Get attendance
+
     @Test
     void getAttendance_Success() throws Exception {
 
@@ -119,7 +121,7 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.rollno").value("21"));
     }
 
-    // ✅ Get class history
+
     @Test
     void getClassHistory_Success() throws Exception {
 
@@ -136,7 +138,7 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.dob").value("12/10/1999"));
     }
 
-    // ✅ Get course enrollment
+
     @Test
     void getCourse_Success() throws Exception {
 
@@ -153,7 +155,7 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.dob").value("12/10/1999"));
     }
 
-    // ✅ Update student
+
     @Test
     void updateStudent_Success() throws Exception {
         LocalDate dob = LocalDate.parse("12/10/1999", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
