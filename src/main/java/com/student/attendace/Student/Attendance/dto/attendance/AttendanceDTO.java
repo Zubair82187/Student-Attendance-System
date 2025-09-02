@@ -29,4 +29,5 @@ public class AttendanceDTO {
 
     @NotNull(message = "student id is required")
     private StudentDTO student;
+
 }

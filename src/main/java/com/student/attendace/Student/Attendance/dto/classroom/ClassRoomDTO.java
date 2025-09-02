@@ -17,4 +17,10 @@ public class ClassRoomDTO {
     private String section;
     @NotNull(message = "session is required")
     private String session;
+
+    public ClassRoomDTO(int id, String className, String section) {
+        this.id = id;
+        this.className = className;
+        this.section = section;
+    }
 }

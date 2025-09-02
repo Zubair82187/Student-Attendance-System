@@ -38,4 +38,10 @@ public class StudentDTO {
         this.rollno = rollno;
         this.dob = dob;
     }
+
+    public StudentDTO(int id, String name, String rollno) {
+        this.id = id;
+        this.name = name;
+        this.rollno = rollno;
+    }
 }
